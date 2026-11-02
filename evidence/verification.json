@@ -1,0 +1,193 @@
+{
+  "started_utc": "2026-11-02T22:21:24.747823+00:00",
+  "platform": "Linux x86_64",
+  "python": "3.14.4",
+  "lean_num_threads": "2",
+  "source_hashes": {
+    ".github/workflows/verify.yml": "6f18e502ba36d25a5d62c820fb415f77c53cc201481a331cedbe4c51cea5fbc5",
+    "RestrictedBell.lean": "e706bd2cdf596e6496fb908cfae2a5c4cd66bb49a1b30ba2f2c0a750d98be57a",
+    "RestrictedBell/Certificate.lean": "a823132f0d4df9ec4aea77a138eafce88db8766fc760f29485fb9bcf7da6c492",
+    "RestrictedBell/Coefficients.lean": "e2d33670431626f36ed7ab1a1f825ae4e2500080ae3d3ab40e1cf287eea701c9",
+    "RestrictedBell/ComputedRows/Batch0.lean": "e7029316600bb026f6aaee1d02059d564c7f7b3854c255de404d7486ecc03f75",
+    "RestrictedBell/ComputedRows/Batch1.lean": "b0c775d10e319e910405c0f53380400e07c6730cc754f47efea7abb8e0a95cdc",
+    "RestrictedBell/ComputedRows/Batch2.lean": "966d79e58cce6e429fb92a26c7535ee831ca57512f6a73b1c9e6a6f4dfa12ea8",
+    "RestrictedBell/ComputedRows/Batch3.lean": "b2968df60c4edc24f7c069d376044c2c38d484b622d2e3c6ca5de80c3d5ee7be",
+    "RestrictedBell/ComputedRows/Batch4.lean": "20eae1d92058dcfcf28d5c5996fcc31c5c9e823f52a29089efb194b88cc0ca5c",
+    "RestrictedBell/ComputedRows/Batch5.lean": "e40f86d553519c4a18dccd3ca616f9e7e8ad0a2b24f13167546a534e7ef6a4e1",
+    "RestrictedBell/ComputedRows/Batch6.lean": "514bd0f713b3a087c7e27edc5bc9553e835af2515e9e544f2452ea73d57d99b6",
+    "RestrictedBell/ComputedRows/Batch7.lean": "05a84d3cd7658ac01050cb14ec47d91328468f573461f8ac2b9e98e6cef9b350",
+    "RestrictedBell/ComputedRows/Batch8.lean": "282c55b04df89a054dd2c6a3579014efd911c03145bc6301a47f80fb75355193",
+    "RestrictedBell/Counterexample.lean": "47a0826bd7969d491524122d73ae349cd402a117c6e4cfaab1a81d45a7b33089",
+    "RestrictedBell/CountingBridge.lean": "ffe9bbc8270f4e6b915fc8681aba5640a4e10d8d4e0d116e14682c37b29563a5",
+    "RestrictedBell/Definition.lean": "8556871ee84c748b6a33e3ee3a8c19279b37c068dc51a2078d26d206feee86ca",
+    "RestrictedBell/Final.lean": "94a967272ed0a159346a94c83c50f23c43d0e979e47c5dc452714594bb1bb2ed",
+    "RestrictedBell/Moments.lean": "29ffa63b281a65b73e3b939564d709281acd996f0578872644b64e1f5fb1e004",
+    "RestrictedBell/Newton.lean": "db64517d0c727041477a4090b322c4db5f4367afe3ec7f5d665590f7704e1e23",
+    "RestrictedBell/Obstruction.lean": "b6e03f199191028363ba41563c1fec63eed64d38a97ac8ab8730e812675d58a8",
+    "RestrictedBell/PartitionRecurrence.lean": "14a09f2256d36d9e815a9ab8066f24ace38c9fcc1376c291be11b933f453a0f6",
+    "RestrictedBell/Profiles.lean": "1756ad5f6bf950e8c12fab35c1968e5c136c13879699002fffdcf8ed91624fa2",
+    "RestrictedBell/TopRecurrence.lean": "2aeac4e989110e054eaa4fef03ff4ed785aea00105e3f883ed6ee39f1a7fefe7",
+    "TOOLCHAIN.json": "b93eeb4a863b0c9556cd9ec7a108468ed1f28228a4102719cb166f07c91e4f17",
+    "Verification.lean": "72ede0bb7872a0c4147d037a343a94f63b9ec544b61834165a86f9c475b5506d",
+    "crosscheck/README.md": "6b118b449dbddf08a7406a99efde6105d3dbe3288fb94140a16b1ad8175e901f",
+    "crosscheck/independent-certificate.json": "5c0759584bd1fff80f900b9b4b3f54ffdc64d977108e321438dc3f014e54c00b",
+    "crosscheck/independent_check.py": "97589d1fa390f4e04172c316860bdf657ab7e76e8f4235d37e81914d5689b85b",
+    "crosscheck/negative_control.py": "93fb05b3abc1ab0e5b83e7ef5e0002ff85b2b65ce38e8f1d0b47a78cfbc8ebe5",
+    "crosscheck/run.sh": "1318f3fbf556edd399e7a2cb22bfde055ed38a61a4823f15cef58fb0599861c0",
+    "lake-manifest.json": "0cbbc593f2188f24c9d8bedb87d3ce299701108e37bae6b7204a09674a5b6263",
+    "lakefile.toml": "1675b109eb7e49e69cfbbb2acf6ddb78a1601b5f6c16f290bb4379bec4969834",
+    "lean-toolchain": "db7bb24b756d745bbde83fe92718b51bd3625dae3701ba0f598d0eedcd3f3028",
+    "original/PROOF-README.txt": "ddcc2a344e3bc418730f45dc9600025a07c59d4ad6ea3dd5cef0fa389a4aba28",
+    "original/README.md": "066f87f6008a6327a707be5868b7b2fb258c4b14cef9b23184d5b6a8a19a929d",
+    "original/certificates/witness.json": "86f886051cfd7b5ff27dc86d763fa4f3ef68048f95cbb45bcf498823232a59db",
+    "original/code/check.py": "d8905384bfe3d41787d4eff7bb303b12786503967f7b10b5f8502a94a37891fc",
+    "original/research/argument.md": "73d0a9e05cdcbf976f85db4e475f797b6c20d6d85fdb18046ce6de771f576901",
+    "original/research/handoff.md": "aa9daec385930156ae47fa06c6ec745f4573676b618f8d038d59f5d3bb50cdc1",
+    "original/result.json": "a9bb3dea13f53f891af35d267ab7dc0dc7e28d12d43dd32fc95d09632e0156fe",
+    "provenance/README.md": "10556dfe8241752605316eae2b44c3e449bba1ea5c7861236de4748f40d1ab05",
+    "provenance/independent/AUDIT.md": "09a0bfeebb960d891a07bab5e25a62f2ff084bff85a0e3a39197795aa13f6bde",
+    "provenance/independent/SHA256.json": "8fc6757daf76546d1cefd2551e49f65ceb821fcbccc64f551d83d0fb32a060fb",
+    "provenance/independent/independent-verifier.log": "e43ee1ac034eddda8368bfea004b4ce5ecd58c81f2b7c79a94384a8e6ac9f5ca",
+    "provenance/independent/supplied-verifier.log": "8cc74620baed9284bef6225f34738b2a3f4ea797f2ec6b1fe87eb51b27a9a8cf",
+    "provenance/lean/SHA256.json": "0d71e5adf5ad8679f15496a3403fb4ce0b606cd9b2fa36c7f65991f66195f538",
+    "provenance/lean/as-received.tar.gz": "abae821379c07f9ce446278acdab70807ff753510e8a3b5510d8a14d9e5442c8",
+    "provenance/lean/public-source.patch": "12e4f0d2cbcfc852104399214ed133f0130d08202ee82db55a8f5d6ce411175c",
+    "scripts/audit.py": "59a667f492628cf9e1981a06d11b04aaf57e1c6984c6c4ec9f9d7815d1d58123",
+    "scripts/check-package.py": "379ec535098f3966602808b7fa1a51df03d828ef16063ca67defafc54fbe65df",
+    "scripts/check_sources.py": "c908fd12f3265f4aecc9fbfaaed4647813ac589b45c3408059a3fe87b088dc93",
+    "scripts/fetch-deps.sh": "92ab8bff10d1daea096c9365fbc96706ecf0e1a1076a74df4fac99f22e580532",
+    "scripts/generate_rows.py": "d726134fb5d67f4871e7f83eef2f43ef93f243d453f4502615e15527b8e4aaa1",
+    "scripts/install-lean.sh": "711ad031b88533b796b32021faec9dfbae4d4174fda9ef01c55f489a657297e3",
+    "scripts/verify.py": "f7bcda08f7bb7154dbce13974bc10a481e342670a6efade8278accb894ac8c1d",
+    "verify.sh": "1104e18faa319141f12a3683d1f8b0732f68683a1e6bd8b8cf9606ba31ca1cd9"
+  },
+  "trust_model": "Lean kernel; propext, Classical.choice, Quot.sound",
+  "audited_declarations": [
+    "Verification.counting_definition_nonreal",
+    "Verification.conjecture_false",
+    "RestrictedBell.restrictedBell_800_5_nonreal",
+    "RestrictedBell.realRootedness_conjecture_false",
+    "RestrictedBell.countingBell_coeff_eq_stirling",
+    "RestrictedBell.countingBell_eq_recurrenceBell",
+    "RestrictedBell.ComputedRows.row800_correct",
+    "RestrictedBell.countingBell_certificate_bridge",
+    "RestrictedBell.countingBell_800_5_monic",
+    "RestrictedBell.countingBell_800_5_ne_zero",
+    "RestrictedBell.countingBell_800_5_natDegree",
+    "RestrictedBell.Certificate.quadratic_exact",
+    "RestrictedBell.Certificate.newton_antidiagonal"
+  ],
+  "steps": [
+    {
+      "command": [
+        "lean",
+        "--version"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.034
+    },
+    {
+      "command": [
+        "lean",
+        "--githash"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.034
+    },
+    {
+      "command": [
+        "lake",
+        "--version"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.034
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit.py",
+        "pins"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.16
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit.py",
+        "sources"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.379
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit.py",
+        "hashes"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.038
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_sources.py"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.074
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/generate_rows.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.181
+    },
+    {
+      "command": [
+        "lake",
+        "--wfail",
+        "build"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 329.689
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "--trust=0",
+        "Verification.lean"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 10.56
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/audit.py",
+        "axioms",
+        ".build/kernel-check.log"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.034
+    },
+    {
+      "command": [
+        "bash",
+        "crosscheck/run.sh"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.836
+    }
+  ],
+  "exit_code": 0,
+  "clean_project_build": true,
+  "finished_utc": "2026-11-02T22:27:08.578889+00:00",
+  "wall_seconds": 342.068,
+  "max_child_rss_kib": 7818040
+}

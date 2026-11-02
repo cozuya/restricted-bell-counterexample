@@ -1,0 +1,52 @@
+name: Verify restricted Bell counterexample
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+  public:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Clean Lean rebuild, exact statements, axioms, and independent checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      LEAN_NUM_THREADS: '2'
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install archive support and provision swap for large coefficient batches
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes zstd
+          sudo fallocate -l 12G /mnt/restricted-bell.swap
+          sudo chmod 600 /mnt/restricted-bell.swap
+          sudo mkswap /mnt/restricted-bell.swap
+          sudo swapon /mnt/restricted-bell.swap
+      - name: Install pinned Lean
+        run: |
+          bash scripts/install-lean.sh "$RUNNER_TEMP/restricted-bell-lean"
+          printf '%s\n' "$RUNNER_TEMP/restricted-bell-lean/lean-4.28.0-linux/bin" >> "$GITHUB_PATH"
+      - name: Fetch locked dependencies
+        run: bash scripts/fetch-deps.sh
+      - name: Check public package and recorded evidence
+        run: python3 scripts/check-package.py
+      - name: Rebuild and verify
+        run: ./verify.sh
+      - name: Preserve fresh evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: verification-${{ github.sha }}-${{ github.run_id }}
+          path: .build/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 90

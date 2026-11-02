@@ -1,0 +1,10 @@
+.lake/
+.tools/
+.build/
+__pycache__/
+*.pyc
+# Recovery-only material must never enter this public package.
+private-evidence/
+executed-files/
+recovery-manifest.json
+*-private-backup.zip

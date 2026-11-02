@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "Please cite this counterexample using the metadata below and identify the commit or release consulted."
+title: "A Counterexample to Restricted Bell Real-Rootedness"
+type: software
+version: 1.0.0
+license: Apache-2.0
+authors:
+  - family-names: Ozols
+    given-names: Chris
+    website: "https://github.com/cozuya"
+url: "https://github.com/cozuya/restricted-bell-counterexample"
+repository-code: "https://github.com/cozuya/restricted-bell-counterexample"
+abstract: >-
+  The restricted Bell polynomial B_(800,<=5), counting finite labeled set
+  partitions with block sizes at most five, has a nonreal complex root.
+  This refutes the real-rootedness assertion of Conjecture 6.4 of Moll,
+  Ramirez, and Villamizar (2017). The unconditional Lean 4.28.0 proof with
+  Mathlib v4.28.0 uses only propext, Classical.choice, and Quot.sound,
+  including kernel-checked integer arithmetic and the combinatorial
+  coefficient bridge. Original and independent Python verifiers are
+  included. No minimality, classification, or novelty claim is made.
+keywords:
+  - restricted Bell polynomials
+  - restricted Stirling numbers
+  - real-rootedness
+  - set partitions
+  - counterexample
+  - Hankel matrix
+  - formal proof
+  - Lean
+  - Mathlib
+preferred-citation:
+  type: report
+  title: "A Counterexample to Restricted Bell Real-Rootedness"
+  authors:
+    - family-names: Ozols
+      given-names: Chris
+  url: "https://github.com/cozuya/restricted-bell-counterexample"
+references:
+  - type: report
+    title: "Combinatorial and Arithmetical Properties of the Restricted and Associated Bell and Factorial Numbers"
+    authors:
+      - family-names: Moll
+        given-names: Victor H.
+      - family-names: Ramírez
+        given-names: José L.
+      - family-names: Villamizar
+        given-names: Diego
+    year: 2017
+    doi: "10.48550/arXiv.1707.08138"
+    url: "https://arxiv.org/abs/1707.08138"

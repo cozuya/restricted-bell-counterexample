@@ -1,0 +1,126 @@
+
+$ lean --version
+Lean (version 4.28.0, x86_64-unknown-linux-gnu, commit 7e01a1bf5c70fc6167d49c345d3bf80596e9a79b, Release)
+EXIT_CODE=0 WALL_SECONDS=0.034
+
+$ lean --githash
+7e01a1bf5c70fc6167d49c345d3bf80596e9a79b
+EXIT_CODE=0 WALL_SECONDS=0.034
+
+$ lake --version
+Lake version 5.0.0-src+7e01a1b (Lean version 4.28.0)
+EXIT_CODE=0 WALL_SECONDS=0.034
+
+$ python3 scripts/audit.py pins
+PASS: Lean, Lake, and all nine locked dependency revisions.
+EXIT_CODE=0 WALL_SECONDS=0.16
+
+$ python3 scripts/audit.py sources
+PASS: 23 active Lean files; no placeholders, custom axioms, native_decide, or unsafe declarations.
+PASS: Final.lean has no dependency on supplementary Coefficients.lean.
+EXIT_CODE=0 WALL_SECONDS=0.379
+
+$ python3 scripts/audit.py hashes
+PASS: complete SHA-256 inventory of 56 verification inputs.
+EXIT_CODE=0 WALL_SECONDS=0.038
+
+$ python3 scripts/check_sources.py
+PASS: original proof and independent audit files match their supplied hashes; all active Lean changes match the documented source patch; certificate literals agree.
+EXIT_CODE=0 WALL_SECONDS=0.074
+
+$ python3 scripts/generate_rows.py --check
+Checked 801 proposed rows, in 9 compilation batches.
+EXIT_CODE=0 WALL_SECONDS=0.181
+
+Removed project build outputs; retained dependency caches.
+
+$ lake --wfail build
+✔ [8026/8048] Built RestrictedBell.Moments (3.8s)
+✔ [8027/8048] Built RestrictedBell.Newton (3.9s)
+✔ [8028/8048] Built RestrictedBell.Definition (3.8s)
+✔ [8029/8048] Built RestrictedBell.Certificate (6.7s)
+✔ [8030/8048] Built RestrictedBell.Profiles (3.8s)
+✔ [8031/8048] Built RestrictedBell.Obstruction (4.1s)
+✔ [8032/8048] Built RestrictedBell.PartitionRecurrence (4.1s)
+✔ [8033/8048] Built RestrictedBell.Counterexample (3.8s)
+✔ [8034/8048] Built RestrictedBell.TopRecurrence (3.6s)
+✔ [8035/8048] Built RestrictedBell.ComputedRows.Batch0 (26s)
+✔ [8036/8048] Built RestrictedBell.ComputedRows.Batch1 (32s)
+✔ [8037/8048] Built RestrictedBell.ComputedRows.Batch2 (32s)
+✔ [8038/8048] Built RestrictedBell.ComputedRows.Batch3 (34s)
+✔ [8039/8048] Built RestrictedBell.ComputedRows.Batch4 (35s)
+✔ [8040/8048] Built RestrictedBell.ComputedRows.Batch5 (41s)
+✔ [8041/8048] Built RestrictedBell.ComputedRows.Batch6 (41s)
+✔ [8042/8048] Built RestrictedBell.ComputedRows.Batch7 (43s)
+✔ [8043/8048] Built RestrictedBell.ComputedRows.Batch8 (4.0s)
+✔ [8044/8048] Built RestrictedBell.CountingBridge (3.3s)
+✔ [8045/8048] Built RestrictedBell.Final (3.5s)
+✔ [8046/8048] Built RestrictedBell.Coefficients (7.7s)
+✔ [8047/8048] Built RestrictedBell (2.9s)
+Build completed successfully (8048 jobs).
+EXIT_CODE=0 WALL_SECONDS=329.689
+
+$ lake env lean --trust=0 Verification.lean
+Verification.counting_definition_nonreal : ∃ z, (∑ p, Polynomial.X ^ (↑p).parts.card).IsRoot z ∧ z.im ≠ 0
+Verification.conjecture_false :
+  ¬∀ (n m : ℕ), 1 ≤ m → m ≠ 3 → m ≠ 4 → ∀ (z : ℂ), (RestrictedBell.countingBell n m).IsRoot z → z.im = 0
+RestrictedBell.restrictedBell_800_5_nonreal : ∃ z, (RestrictedBell.countingBell 800 5).IsRoot z ∧ z.im ≠ 0
+RestrictedBell.realRootedness_conjecture_false : ¬RestrictedBell.RealRootednessConjecture
+RestrictedBell.countingBell_coeff_eq_stirling (n m k : ℕ) :
+  (RestrictedBell.countingBell n m).coeff k = ↑(RestrictedBell.stirling m n k)
+RestrictedBell.countingBell_eq_recurrenceBell (n m : ℕ) :
+  RestrictedBell.countingBell n m = RestrictedBell.recurrenceBell n m
+RestrictedBell.countingBell_certificate_bridge (k : ℕ) (hk : k < 39) :
+  (RestrictedBell.countingBell 800 5).coeff (800 - k) = ↑(RestrictedBell.Certificate.c k)
+RestrictedBell.countingBell_800_5_monic : (RestrictedBell.countingBell 800 5).Monic
+RestrictedBell.countingBell_800_5_ne_zero : RestrictedBell.countingBell 800 5 ≠ 0
+RestrictedBell.countingBell_800_5_natDegree : (RestrictedBell.countingBell 800 5).natDegree = 800
+'Verification.counting_definition_nonreal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Verification.conjecture_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.restrictedBell_800_5_nonreal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.realRootedness_conjecture_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_coeff_eq_stirling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_eq_recurrenceBell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.ComputedRows.row800_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_certificate_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_800_5_monic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_800_5_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_800_5_natDegree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.Certificate.quadratic_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.Certificate.newton_antidiagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+EXIT_CODE=0 WALL_SECONDS=10.56
+
+$ python3 scripts/audit.py axioms .build/kernel-check.log
+PASS: all 13 declarations use exactly propext, Classical.choice, Quot.sound.
+EXIT_CODE=0 WALL_SECONDS=0.034
+
+$ bash crosscheck/run.sh
+All 800 rows: counting and differential recurrences agree.
+All 801 final coefficients: independent EGF calculation agrees.
+n = 800 m = 5 q = 160 degree(Q) = 640
+Hankel order = 20
+Leading principal minor signs: +++++++++++++++++++-
+det(H) = -79556371598115099107491298785557145248687560256952424334608764549115807118736347922456914856522681658840154285379035606694911880901881470989119607782452403775413878639985663491706049416789271244364073849714419885842627554305276819328772482296937610245476996686876875343870326994266255382767157019650405424828523763429611693283869910290667791493188019762934849421868728817795120371615737184631019122778361153091659657272223979113175528266513367833054990428176445539284906731766938324043431262734538783826074571438422734015855996742911035975312937106545342635592786139677040244931770390587316178451710008111954153499411812902866208967397672738930486571799648890209957099920648790204539194419033448655737152225918750074021847562544077945951656182397776857784439945157261333917766704833953685591290882461047231901223897377443218750385415177806086143579846563898688830117529297633417320691471765813069508047760368723525790839084918982083846618684720224883595125669176318017397556274286666239589175201653449292080060315533867225186304000000000000000000000000000000000000000000000000000000000000
+Both exact determinant calculations agree; det(H) < 0.
+COUNTEREXAMPLE VERIFIED by the moment-matrix obstruction.
+PASS: independent direct block-type enumeration matches all 39 leading coefficients.
+PASS: formal-series logarithmic derivative matches all 39 moments.
+PASS: exact LDL^T reconstructs every entry of the 20x20 Hankel matrix.
+PASS: determinant agrees with original certificate; signs: +++++++++++++++++++-
+PASS: -8*10^1087 < determinant < -7*10^1087 < 0.
+PASS: explicit primitive integer vector u satisfies u^T H u < 0.
+Integer vector: length 20 ; largest entry digits: 447
+Negative quadratic form absolute-value digits: 897
+All arithmetic exact. No floating-point root computation used.
+Elapsed: 0.045 seconds
+Certificate: .build/independent-certificate.json
+PASS: independent verifier rejects corrupted top_coefficients.
+PASS: independent verifier rejects corrupted determinant.
+CROSSCHECK=PASS
+EXIT_CODE=0 WALL_SECONDS=0.836
+
+FULL_REBUILD=PASS
+EXACT_STATEMENTS=PASS
+AXIOM_AUDIT=PASS
+CROSSCHECK=PASS
+VERIFY_EXIT_CODE=0

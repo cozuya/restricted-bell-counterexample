@@ -1,0 +1,11 @@
+PASS: independent direct block-type enumeration matches all 39 leading coefficients.
+PASS: formal-series logarithmic derivative matches all 39 moments.
+PASS: exact LDL^T reconstructs every entry of the 20x20 Hankel matrix.
+PASS: determinant agrees with original certificate; signs: +++++++++++++++++++-
+PASS: -8*10^1087 < determinant < -7*10^1087 < 0.
+PASS: explicit primitive integer vector u satisfies u^T H u < 0.
+Integer vector: length 20 ; largest entry digits: 447
+Negative quadratic form absolute-value digits: 897
+All arithmetic exact. No floating-point root computation used.
+Elapsed: 0.062 seconds
+Certificate: /mnt/data/problem20-audit/verification/independent-certificate.json

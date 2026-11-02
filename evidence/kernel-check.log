@@ -1,0 +1,27 @@
+Verification.counting_definition_nonreal : ∃ z, (∑ p, Polynomial.X ^ (↑p).parts.card).IsRoot z ∧ z.im ≠ 0
+Verification.conjecture_false :
+  ¬∀ (n m : ℕ), 1 ≤ m → m ≠ 3 → m ≠ 4 → ∀ (z : ℂ), (RestrictedBell.countingBell n m).IsRoot z → z.im = 0
+RestrictedBell.restrictedBell_800_5_nonreal : ∃ z, (RestrictedBell.countingBell 800 5).IsRoot z ∧ z.im ≠ 0
+RestrictedBell.realRootedness_conjecture_false : ¬RestrictedBell.RealRootednessConjecture
+RestrictedBell.countingBell_coeff_eq_stirling (n m k : ℕ) :
+  (RestrictedBell.countingBell n m).coeff k = ↑(RestrictedBell.stirling m n k)
+RestrictedBell.countingBell_eq_recurrenceBell (n m : ℕ) :
+  RestrictedBell.countingBell n m = RestrictedBell.recurrenceBell n m
+RestrictedBell.countingBell_certificate_bridge (k : ℕ) (hk : k < 39) :
+  (RestrictedBell.countingBell 800 5).coeff (800 - k) = ↑(RestrictedBell.Certificate.c k)
+RestrictedBell.countingBell_800_5_monic : (RestrictedBell.countingBell 800 5).Monic
+RestrictedBell.countingBell_800_5_ne_zero : RestrictedBell.countingBell 800 5 ≠ 0
+RestrictedBell.countingBell_800_5_natDegree : (RestrictedBell.countingBell 800 5).natDegree = 800
+'Verification.counting_definition_nonreal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Verification.conjecture_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.restrictedBell_800_5_nonreal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.realRootedness_conjecture_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_coeff_eq_stirling' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_eq_recurrenceBell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.ComputedRows.row800_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_certificate_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_800_5_monic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_800_5_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.countingBell_800_5_natDegree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.Certificate.quadratic_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RestrictedBell.Certificate.newton_antidiagonal' depends on axioms: [propext, Classical.choice, Quot.sound]

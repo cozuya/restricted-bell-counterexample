@@ -1,0 +1,20 @@
+{
+  "repository": "cozuya/restricted-bell-counterexample",
+  "description": "Kernel-checked Lean counterexample to restricted Bell real-rootedness: B_(800,<=5) has a nonreal zero (Moll–Ramírez–Villamizar Conjecture 6.4).",
+  "release_tag": "v1.0.0",
+  "topics": [
+    "mathematics",
+    "combinatorics",
+    "set-partitions",
+    "bell-polynomials",
+    "restricted-bell-polynomials",
+    "stirling-numbers",
+    "real-rootedness",
+    "counterexample",
+    "hankel-matrices",
+    "formal-proof",
+    "computer-assisted-proof",
+    "lean4",
+    "mathlib"
+  ]
+}

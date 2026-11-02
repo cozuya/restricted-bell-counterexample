@@ -1,0 +1,171 @@
+--- as-received/RestrictedBell/Coefficients.lean
++++ public/RestrictedBell/Coefficients.lean
+@@ -1,4 +1,5 @@
+ import RestrictedBell.Certificate
++import RestrictedBell.CountingBridge
+ import Mathlib.Data.Nat.Factorial.Basic
+ 
+ namespace RestrictedBell
+@@ -15,7 +16,9 @@
+     24^a₄ * a₄.factorial * 120^a₅ * a₅.factorial
+ 
+ /-- Efficient finite enumeration of profiles of deficit `r`.
+-This arithmetic definition has not yet been connected to `countingBell`. -/
++For `n = 800` and `r < 39`, `countingBell_profile_bridge` below connects this
++supplementary calculation to the counting polynomial. The final counterexample
++uses the direct certificate bridge and does not depend on this module. -/
+ def profileCoefficient (n r : ℕ) : ℕ :=
+   ∑ a₅ ∈ Finset.range (r / 4 + 1),
+   ∑ a₄ ∈ Finset.range ((r - 4*a₅) / 3 + 1),
+@@ -155,4 +158,11 @@
+   exact profile_coefficient_37
+   exact profile_coefficient_38
+ 
++/-- Supplementary agreement with the profile enumeration. The final proof uses
++`countingBell_certificate_bridge` directly and does not import this module. -/
++theorem countingBell_profile_bridge (k : ℕ) (hk : k < 39) :
++    (countingBell 800 5).coeff (800-k) = (profileCoefficient 800 k : ℂ) := by
++  rw [countingBell_certificate_bridge k hk]
++  exact_mod_cast (profile_coefficient k hk).symm
++
+ end RestrictedBell
+--- as-received/RestrictedBell/Counterexample.lean
++++ public/RestrictedBell/Counterexample.lean
+@@ -1,4 +1,3 @@
+-import RestrictedBell.Coefficients
+ import RestrictedBell.Definition
+ import RestrictedBell.Obstruction
+ 
+@@ -9,8 +8,8 @@
+   ∀ n m : ℕ, 1 ≤ m → m ≠ 3 → m ≠ 4 →
+     ∀ z : ℂ, (countingBell n m).IsRoot z → z.im = 0
+ 
+-/-- Reduction to the outstanding combinatorial/coefficient bridge.
+-All four displayed hypotheses still need to be supplied for an actual quotient. -/
++/-- Reduction from a monic quotient with the certified leading coefficients.
++The hypotheses are supplied by `counterexample_of_certificate_bridge` below. -/
+ theorem counterexample_of_coefficient_bridge (q : Polynomial ℂ)
+     (hfactor : countingBell 800 5 = Polynomial.X ^ 160 * q)
+     (hm : q.Monic) (hd : q.natDegree = 640)
+@@ -20,24 +19,20 @@
+   refine ⟨z, ?_, him⟩
+   rw [Polynomial.IsRoot, hfactor, Polynomial.eval_mul, hz.eq_zero, mul_zero]
+ 
+-/-- A proof of the target would refute the stated universal conjecture. -/
++/-- A nonreal root at the admissible pair `(800,5)` refutes the universal conjecture. -/
+ theorem conjecture_false_of_counterexample (h : CounterexampleStatement) :
+     ¬ RealRootednessConjecture := by
+   obtain ⟨z, hz, him⟩ := h
+   intro hc
+   exact him (hc 800 5 (by decide) (by decide) (by decide) z hz)
+ 
+-/-- A single, precisely stated counting bridge is sufficient to finish the proof.
+-The hypothesis below is NOT proved in this project. -/
+-theorem counterexample_of_profile_bridge
++/-- The counting bridge implies the counterexample.
++`CountingBridge.lean` proves this hypothesis; `Final.lean` applies it. -/
++theorem counterexample_of_certificate_bridge
+     (hbridge : ∀ k < 39, (countingBell 800 5).coeff (800-k) =
+-      (profileCoefficient 800 k : ℂ)) : CounterexampleStatement := by
+-  have hc : ∀ k < 39, (countingBell 800 5).coeff (800-k) = (Certificate.c k : ℂ) := by
+-    intro k hk
+-    rw [hbridge k hk]
+-    exact_mod_cast profile_coefficient k hk
++      (Certificate.c k : ℂ)) : CounterexampleStatement := by
+   have htop : (countingBell 800 5).coeff 800 = 1 := by
+-    simpa [Certificate.c, Certificate.coefficients] using hc 0 (by decide)
++    simpa [Certificate.c, Certificate.coefficients] using hbridge 0 (by decide)
+   have hdeg := Polynomial.natDegree_eq_of_le_of_coeff_ne_zero
+     (countingBell_degree_le 800 5) (htop ▸ one_ne_zero)
+   have hmon := Polynomial.monic_of_natDegree_le_of_coeff_eq_one 800
+@@ -50,7 +45,7 @@
+     omega
+   apply counterexample_of_coefficient_bridge q hq hqm hqd
+   intro k hk
+-  have h := hc k hk
++  have h := hbridge k hk
+   rw [hq, show 800-k = (640-k)+160 by omega, Polynomial.coeff_X_pow_mul] at h
+   exact h
+ 
+--- as-received/RestrictedBell/CountingBridge.lean
++++ public/RestrictedBell/CountingBridge.lean
+@@ -1,5 +1,5 @@
+ import RestrictedBell.ComputedRows.Batch8
+-import RestrictedBell.Coefficients
++import RestrictedBell.Certificate
+ 
+ namespace RestrictedBell
+ 
+@@ -14,14 +14,11 @@
+   rw [← h]
+   exact hdata ⟨k, hk⟩
+ 
+-/-- The missing bridge: actual set-partition coefficients equal the verified
+-profile sums. Both sides are independently connected to the exact certificate;
+-the counting side uses the proved combinatorial recurrence. -/
+-theorem countingBell_profile_bridge (k : ℕ) (hk : k < 39) :
+-    (countingBell 800 5).coeff (800-k) = (profileCoefficient 800 k : ℂ) := by
++/-- Actual set-partition coefficients equal the exact certificate directly,
++using the proved counting recurrence and its checked final row. -/
++theorem countingBell_certificate_bridge (k : ℕ) (hk : k < 39) :
++    (countingBell 800 5).coeff (800-k) = (Certificate.c k : ℂ) := by
+   rw [countingBell_coeff_eq_stirling]
+-  have h : (stirling 5 800 (800-k) : ℤ) = (profileCoefficient 800 k : ℤ) :=
+-    (stirling_top_certificate k hk).trans (profile_coefficient k hk).symm
+-  exact_mod_cast h
++  exact_mod_cast stirling_top_certificate k hk
+ 
+ end RestrictedBell
+--- as-received/RestrictedBell/Definition.lean
++++ public/RestrictedBell/Definition.lean
+@@ -15,7 +15,7 @@
+       n.choose j * stirling m (n - j) k
+ termination_by n _ => n
+ 
+-/-- The recurrence-defined polynomial. Its equivalence to `countingBell` remains to prove. -/
++/-- The recurrence-defined polynomial. Its equivalence to `countingBell` is proved in `PartitionRecurrence.lean`. -/
+ noncomputable def recurrenceBell (n m : ℕ) : Polynomial ℂ :=
+   ∑ k ∈ Finset.range (n + 1), Polynomial.monomial k (stirling m n k : ℂ)
+ 
+@@ -32,7 +32,7 @@
+ noncomputable def countingBell (n m : ℕ) : Polynomial ℂ :=
+   ∑ p : BoundedPartition n m, Polynomial.X ^ p.val.parts.card
+ 
+-/-- Exact target; this proposition is a specification, not a proved theorem. -/
++/-- The counterexample proposition, proved unconditionally in `Final.lean`. -/
+ def CounterexampleStatement : Prop :=
+   ∃ z : ℂ, (countingBell 800 5).IsRoot z ∧ z.im ≠ 0
+ 
+--- as-received/RestrictedBell/Final.lean
++++ public/RestrictedBell/Final.lean
+@@ -3,10 +3,29 @@
+ 
+ namespace RestrictedBell
+ 
++/-- The counterexample polynomial is monic; its nonreal root is not vacuous. -/
++theorem countingBell_800_5_monic : (countingBell 800 5).Monic := by
++  apply Polynomial.monic_of_natDegree_le_of_coeff_eq_one 800
++    (countingBell_degree_le 800 5)
++  simpa [Certificate.c, Certificate.coefficients] using
++    countingBell_certificate_bridge 0 (by decide)
++
++/-- In particular, the counterexample polynomial is not the zero polynomial. -/
++theorem countingBell_800_5_ne_zero : countingBell 800 5 ≠ 0 :=
++  countingBell_800_5_monic.ne_zero
++
++/-- The counting polynomial has degree exactly 800. -/
++theorem countingBell_800_5_natDegree : (countingBell 800 5).natDegree = 800 := by
++  have htop : (countingBell 800 5).coeff 800 = 1 := by
++    simpa [Certificate.c, Certificate.coefficients] using
++      countingBell_certificate_bridge 0 (by decide)
++  exact Polynomial.natDegree_eq_of_le_of_coeff_ne_zero
++    (countingBell_degree_le 800 5) (htop ▸ one_ne_zero)
++
+ /-- The actual restricted Bell polynomial B_{800,≤5} has a nonreal complex root. -/
+ theorem restrictedBell_800_5_nonreal :
+     ∃ z : ℂ, (countingBell 800 5).IsRoot z ∧ z.im ≠ 0 :=
+-  counterexample_of_profile_bridge countingBell_profile_bridge
++  counterexample_of_certificate_bridge countingBell_certificate_bridge
+ 
+ /-- Counterexample to the real-rootedness assertion of Conjecture 6.4. -/
+ theorem realRootedness_conjecture_false : ¬ RealRootednessConjecture :=
